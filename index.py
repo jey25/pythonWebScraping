@@ -1,10 +1,8 @@
 
 
-def plus(a, b):
-    print(a+b)
+def say_hello(name, age):
+    return f"Hello {name} and {age}"
 
-def minus(a, b):
-    print(a-b)
 
-plus(2, 5)
-minus(5, 2)
+hello = say_hello("jang", "13")
+print(hello)
