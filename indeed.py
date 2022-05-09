@@ -27,10 +27,21 @@ def extract_indeed_jobs(last_page):
     jobs = []
     # for page in range(last_page):
     result = requests.get(f"{URL}&start={0*LIMIT}")
+
     soup = BeautifulSoup(result.text, "html.parser")
-    results = soup.find_all("a", {"class":"fs-unmask"})
+    results = soup.find_all("a", {"class" : "jcs-JobTitle"})
+
     for result in results:
-        title = result.find("h2", {"class":"jobTitle"}).find("span", title=True).string
-        company = result.find("span",{"class":"companyName"}).string
-        print(title, company)
+        title = result.find("span", title=True).string
+        company = result.find("span", {"class" : "companyName"}).string
+
+        if(company is not None):
+            company_anchor = company.find("a")
+        if(company_anchor is not None):
+            company = company_anchor.text
+        else:
+            company = company.text
+        print(company)
+        print(title)
+  
     return jobs
