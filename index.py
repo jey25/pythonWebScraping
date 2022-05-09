@@ -1,8 +1,9 @@
+import requests
+from bs4 import BeautifulSoup
 
+r = requests.get("https://stackoverflow.com/search?q=qa")
 
-def say_hello(name, age):
-    return f"Hello {name} and {age}"
+soup = BeautifulSoup(r.text, "html.parser")
 
+print(soup)
 
-hello = say_hello("jang", "13")
-print(hello)
