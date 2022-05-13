@@ -1,5 +1,3 @@
-
-
 import requests
 from bs4 import BeautifulSoup
 
@@ -10,7 +8,7 @@ def extract_indeed_pages():
     result = requests.get(URL)
     soup = BeautifulSoup(result.text, "html.parser")
 
-    pagination = soup.find("div", {"class":"pagination"})
+    pagination = soup.select_one('#job_180bea44171f59ae')
 
     links = pagination.find_all("a")
 
