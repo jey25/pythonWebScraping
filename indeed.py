@@ -2,7 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 
 LIMIT = 50
-URL = f"https://kr.indeed.com/jobs?q=qa&limit={LIMIT}&radius=25&vjk=2e794be49a16f1e7"
+URL = f"https://kr.indeed.com/jobs?q=python&limit={LIMIT}&radius=25&vjk=2e794be49a16f1e7"
+
 
 def extract_indeed_pages():
     result = requests.get(URL)
@@ -22,8 +23,9 @@ def extract_indeed_pages():
 
 
 def extract_job(html):
-    title = html.find("h2", {"class":"jobTitle"}).find("span", title=True).string
-    company = html.find("span", {"class" : "companyName"}).string
+    title = html.find("h2", {"class": "jobTitle"}).find(
+        "span", title=True).string
+    company = html.find("span", {"class": "companyName"}).string
     company_anchor = company.find("a")
     if company_anchor is not None:
         company = str(company_anchor.string)
@@ -38,7 +40,7 @@ def extract_indeed_jobs(last_page):
     # for page in range(last_page):
     result = requests.get(f"{URL}&start={0*LIMIT}")
     soup = BeautifulSoup(result.text, "html.parser")
-    results = soup.find_all("h2", {"class" : "jobTitle"})
+    results = soup.find_all("h2", {"class": "jobTitle"})
 
     for result in results:
         job = extract_job(result)
