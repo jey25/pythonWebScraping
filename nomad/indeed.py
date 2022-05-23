@@ -15,7 +15,7 @@ def extract_indeed_pages():
     links = pagination.find_all('a')
 
     pages = []
-    for link in links[:-1]:
+    for link in links[1:-1]:
         pages.append(int(link.text))
 
     max_pages = pages[-1]
@@ -24,7 +24,4 @@ def extract_indeed_pages():
 
 def extract_indeed_jobs(last_page):
     for page in range(last_page):
-        print(int(page*LIMIT))
-
-# for n in range(max_pages):
-#     print(f"start={n*10}")
+        print(page*LIMIT)
