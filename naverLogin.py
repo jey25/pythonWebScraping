@@ -1,5 +1,5 @@
 
-# selenium 4.0 이후 최신 버전 사용법 
+# selenium 4.0 이후 최신 버전 사용법
 
 # 아래 설치 또는 업그레이드
 
@@ -25,7 +25,7 @@ chrome_options.add_experimental_option("detach", True)
 
 
 # 불필요한 에러 메시지 없애기
-chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"]) 
+chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
 
 service = Service(executable_path=ChromeDriverManager().install())
@@ -34,7 +34,8 @@ driver = webdriver.Chrome(service=service, options=chrome_options)
 driver.implicitly_wait(5)
 driver.maximize_window()
 
-driver.get('https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com')
+driver.get(
+    'https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com')
 
 # 아이디 입력창
 id = driver.find_element(By.CSS_SELECTOR, "#id")
@@ -53,5 +54,3 @@ time.sleep(2)
 # 로그인 버튼
 login_btn = driver.find_element(By.CSS_SELECTOR, "#log\.login")
 login_btn.click()
-
-
