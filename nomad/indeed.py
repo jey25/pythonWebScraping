@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 LIMIT = 10
-url = f'https://kr.indeed.com/jobs?q=python&start={LIMIT}&vjk=6dd48f3771d01215'
+url = f'https://kr.indeed.com/jobs?q=python&'
 
 
 def extract_indeed_pages():
@@ -23,5 +23,14 @@ def extract_indeed_pages():
 
 
 def extract_indeed_jobs(last_page):
-    for page in range(last_page):
-        print(page*LIMIT)
+    jobs = []
+    # for page in range(last_page):
+    result = requests.get(f"{url}&start={0*LIMIT}")
+    soup = BeautifulSoup(result.text, "html.parser")
+    results = soup.find_all("div", {"class": "heading4"})
+    for result in results:
+        title = result.find("h2", {"class": "jobTitle"}).find(
+            "span", title=True).text
+        company = result.find("a", {"class": "turnstileLink"}).text
+        print(company)
+    return jobs
