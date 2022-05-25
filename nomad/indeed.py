@@ -29,8 +29,9 @@ def extract_indeed_jobs(last_page):
     soup = BeautifulSoup(result.text, "html.parser")
     results = soup.find_all("div", {"class": "heading4"})
     for result in results:
-        title = result.find("h2", {"class": "jobTitle"}).find(
+        title = result.find("a", {"class": "jcs-JobTitle"}).find(
             "span", title=True).text
-        company = result.find("a", {"class": "turnstileLink"}).text
+        company = result.find("span", {"class": "companyName"}).text
         print(company)
+
     return jobs
