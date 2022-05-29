@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<h1>you are searching for {{word}}</h1>
+<a href="/">Go back</a>
+<div>
+  <a href="/download/{{word}}">Export to csv</a>
+</div>
+{% for job in jobs %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{job.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{job.company}}</h6>
+    <a href="{{job.site}}" class="card-link">Apply</a>
+  </div>
+</div>
+{% endfor %} {% endblock %}
